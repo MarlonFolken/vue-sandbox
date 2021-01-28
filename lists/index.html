@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<title>App listado de compras</title>
+	<link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+	<div id="shopping-list">
+		<div class="header">
+			<h3>{{ header.toLocaleUpperCase() }}</h3>
+			<button v-if="'default' === state" class="btn btn-primary" @click="changeState('edit')">Crear lista</button>
+			<button v-else class="btn btn-cancel" @click="changeState('default')">Remover input</button>
+		</div>
+		<div v-if="'edit' === state" class="add-item-form">
+			<input 
+				v-model="newItem" 
+				type="text" 
+				placeholder="Escribe un elemento"
+				@keyup.enter="addItem"
+			>
+			<button 
+				class="btn btn-primary"
+				:disabled="0 === newItem.length"
+				@click="addItem"
+			>Agregar</button>
+		</div>
+		<ul>
+			<li v-for="item in items">{{ item }}</li>
+		</ul>
+		<p v-if="0 === items.length">Has comprado todos tus pendientes &#128515;</p>
+	</div>
+	<script src="https://unpkg.com/vue"></script>
+	<script src="main.js"></script>
+</body>
+
+</html>
