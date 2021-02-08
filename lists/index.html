@@ -28,9 +28,15 @@
 			>Agregar</button>
 		</div>
 		<ul>
-			<li v-for="item in items">{{ item }}</li>
+			<li v-for="item in items" :class="{strikeout: item.purchased}">{{ item.label }}</li>
 		</ul>
 		<p v-if="0 === items.length">Has comprado todos tus pendientes &#128515;</p>
+		<section>
+			<h4>Accesos directos</h4>
+			<ul>
+				<li :href="https://www.google.com/search?q=compra+despensa+en+linea&oq=compra+despensa+en+linea" target="_blank">Opciones en linea</li>
+			</ul>
+		</section>
 	</div>
 	<script src="https://unpkg.com/vue"></script>
 	<script src="main.js"></script>

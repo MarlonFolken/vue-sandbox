@@ -5,14 +5,26 @@ var shoppingList = new Vue({
     header: 'App listado de compras',
     newItem: '',
     items: [
-        'Garrafón agua',
-        'Huevo',
-        'Manzanas',
+      {
+        label: "Garrafón agua",
+        purchased: false
+      },
+      {
+        label: "Huevo",
+        purchased: false
+      },
+      {
+        label: "Manzanas",
+        purchased: true
+      }
     ]
   },
   methods: {
     addItem: function() {
-      this.items.push(this.newItem);
+      this.items.push({
+        label: this.newItem,
+        purchased: false
+      });
       this.newItem = '';
     },
     changeState: function(newState) {
