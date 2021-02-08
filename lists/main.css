@@ -1,4 +1,19 @@
+#h4-hotlinks{
+  margin: 0;
+}
+#hotlinks{
+  padding-left: 1.4rem;
+}
+.general-item{
+  font-size: 1.1rem;
+  color: #444;
+  text-overflow: ellipsis;
+}
 .strikeout{
   text-decoration: line-through;
   color: silver;
+}
+.priority{
+  color: tomato;
+  font-weight: bold;
 }

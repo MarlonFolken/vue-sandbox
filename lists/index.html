@@ -11,8 +11,8 @@
 	<div id="shopping-list">
 		<div class="header">
 			<h3>{{ header.toLocaleUpperCase() }}</h3>
-			<button v-if="'default' === state" class="btn btn-primary" @click="changeState('edit')">Crear lista</button>
-			<button v-else class="btn btn-cancel" @click="changeState('default')">Remover input</button>
+			<button v-if="'default' === state" class="btn btn-primary" @click="changeState('edit')">Escribir a lista</button>
+			<button v-else class="btn btn-cancel" @click="changeState('default')">Ocultar escritura</button>
 		</div>
 		<div v-if="'edit' === state" class="add-item-form">
 			<input 
@@ -23,18 +23,22 @@
 			>
 			<button 
 				class="btn btn-primary"
-				:disabled="0 === newItem.length"
+				:disabled="2 >= newItem.length"
 				@click="addItem"
 			>Agregar</button>
 		</div>
 		<ul>
-			<li v-for="item in items" :class="{strikeout: item.purchased}">{{ item.label }}</li>
+			<li 
+				v-for="item in items" 
+				:class="[item.purchased ? 'strikeout' : '', item.highPriority ? 'priority' : '', 'general-item']"
+				@click="togglePurchased(item)"
+			>{{ item.label }}</li>
 		</ul>
 		<p v-if="0 === items.length">Has comprado todos tus pendientes &#128515;</p>
 		<section>
-			<h4>Accesos directos</h4>
-			<ul>
-				<li :href="https://www.google.com/search?q=compra+despensa+en+linea&oq=compra+despensa+en+linea" target="_blank">Opciones en linea</li>
+			<h4 id="h4-hotlinks">Accesos directos</h4>
+			<ul id="hotlinks">
+				<a :href="searchShop" target="_blank">Opciones en linea</a>
 			</ul>
 		</section>
 	</div>
