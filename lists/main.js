@@ -44,5 +44,19 @@ var shoppingList = new Vue({
     togglePurchased: function(item) {
       item.purchased =  !item.purchased;
     }
+  },
+  /* -computed- changes how info is shown,
+   * without changing source info itself.
+   */
+  computed: {
+    typedCount() {
+      if(!this.newItem.length){
+        return 0
+      }
+      return this.newItem.length;
+    },
+    lastToTopList() {
+      return this.items.slice(0).reverse()
+    }
   }
 })
